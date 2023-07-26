@@ -1,0 +1,43 @@
+/* main color */
+/* #112D4E */
+
+/* slideext  color */
+/* #3F72AF */
+
+/* light color */
+/* #DBE2EF */
+
+/* Text color */
+/* #F9F7F7 */
+
+:root {
+  --primaryColor: #112d4e;
+}
+
+.header {
+  background-color: var(--primaryColor);
+  color: #dbe2ef;
+  padding-left: 1rem;
+}
+
+.page-container {
+  padding-top: 1rem;
+  padding-right: 1rem;
+}
+
+/* .link-tag a {
+  text-decoration: none;
+  color: #112d4e !important;
+  font-size: 18px;
+  width: 95%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  padding: 0 16px;
+  border-radius: 4px;
+}
+
+.link-tag a:hover {
+  background-color: #112d4e;
+  color: #dbe2ef;
+} */
