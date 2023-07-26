@@ -4,7 +4,6 @@ import type { ColumnsType } from "antd/es/table";
 import BaseTable from "../../components/BaseTable/BaseTable";
 import { Col, Row, Space } from "antd";
 import { Link } from "react-router-dom";
-import BaseButton from "../../components/BaseButton";
 import { ActionRoutes } from "../../routes/routesData";
 import { formData } from "./formData";
 

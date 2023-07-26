@@ -35,7 +35,6 @@ const Controller: React.FC<Props> = ({
     case AllFields.input.component:
       return (
         <BaseInput
-          id={id}
           type={type}
           name={name}
           placeholder={placeholder}
