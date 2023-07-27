@@ -40,6 +40,7 @@ const FormPreview: React.FC = (props: Props) => {
         {Object.keys(formField).length !== 0 &&
           (formField.fields || []).map((field: any) => {
             const { name, label, labelVisible } = field || {};
+            console.log("prov", formField);
             return (
               <Form.Item name={name} label={labelVisible && label}>
                 <Controller {...field} />

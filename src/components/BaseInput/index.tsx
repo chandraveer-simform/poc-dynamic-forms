@@ -3,9 +3,10 @@ import { Input } from "antd";
 
 interface Props {
   type?: "text" | "textarea";
-  name: string;
+  name?: string;
   placeholder?: string;
   classNames?: string;
+  [key: string]: string;
 }
 
 const BaseInput: React.FC<Props> = ({

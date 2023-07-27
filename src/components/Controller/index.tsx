@@ -4,11 +4,11 @@ import BaseInput from "../BaseInput";
 import { AllFields } from "../../utils/fields";
 
 interface Props {
-  id: string;
+  id?: string;
   component: string;
   name?: string;
-  label: string;
-  type: any;
+  label?: string;
+  type?: any;
   placeholder?: string;
   defaultValue?: any;
   rules?: {
@@ -31,7 +31,11 @@ const Controller: React.FC<Props> = ({
 }) => {
   switch (component) {
     case AllFields.button.component:
-      return <BaseButton label={label} type={type} {...rest} />;
+      return (
+        <BaseButton type={type} {...rest}>
+          {label}
+        </BaseButton>
+      );
     case AllFields.input.component:
       return (
         <BaseInput

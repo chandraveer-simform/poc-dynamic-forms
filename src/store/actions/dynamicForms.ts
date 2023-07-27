@@ -1,16 +1,18 @@
 import { getData, setData } from "../../api/storage";
-import { API_STATUS } from "../../utils/constants";
+import { displayMessage } from "../../utils/renderMethod/displayMessage";
+import { API_MESSAGES, API_STATUS } from "../../utils/constants";
 import { makeString } from "../../utils/helper";
+import { ACTIONS_TYPE } from "../actionType";
 
 export interface FieldsInterface {
   component: any;
-  name?: string;
-  label?: string;
+  name?: string | number | (string | number)[];
+  label: string;
   labelVisible?: boolean;
   placeholder?: string;
   htmlType?: string;
-  type: any;
-  id: string;
+  type?: any;
+  id?: string;
 }
 
 export interface FormsDataFieldsInterface {
@@ -28,55 +30,41 @@ export interface DynamicFormResult {
   message?: string;
 }
 
-export const getAllForm = (name: any, page: number) => {
+export const getAllForm = (name: any, page?: number) => {
   try {
     const { status, data } = getData(name);
     return { status: status, count: data.length, data: data };
   } catch (err) {
+    displayMessage(API_STATUS.ERROR, err);
     return { status: API_STATUS.ERROR, message: err };
   }
-};
-
-const get = (name: any) => {
-  return localStorage.getItem(name);
 };
 
 export const createForm = (name: string, values: any) => {
   try {
-    const { data } = getAllForm(name, 0);
+    const { data = [] } = getAllForm(name);
     const uniqId = makeString();
     values["id"] = uniqId;
     const { status } = setData(name, [...data, { ...values }]);
-    return { status: status, data: values };
+    if (status) {
+      displayMessage(status, API_MESSAGES.SUCCESSFULLY_CREATE);
+      return { status: status, data: values };
+    }
   } catch (err) {
+    displayMessage(API_STATUS.ERROR, err);
     return { status: API_STATUS.ERROR, message: err };
   }
 };
 
-// const update = (id: any, data: ITutorialData) => {
-//   return http.put<any>(`/tutorials/${id}`, data);
-// };
-
-// const remove = (id: any) => {
-//   return http.delete<any>(`/tutorials/${id}`);
-// };
-
-// const removeAll = () => {
-//   return http.delete<any>(`/tutorials`);
-// };
-
-// const findByTitle = (title: string) => {
-//   return http.get<Array<ITutorialData>>(`/tutorials?title=${title}`);
-// };
+const deleteForm = (id: any) => {
+  const { data = [] } = getAllForm(ACTIONS_TYPE.DYNAMICS_FORMS_LIST);
+  return;
+};
 
 const DynamicFormService = {
   getAllForm,
-  get,
   createForm,
-  // update,
-  // remove,
-  // removeAll,
-  // findByTitle,
+  deleteForm,
 };
 
 export default DynamicFormService;

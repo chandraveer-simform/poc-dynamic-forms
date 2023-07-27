@@ -1,11 +1,20 @@
 import { API_MESSAGES, API_STATUS } from "../utils/constants";
 
+export interface ReturnResult {
+  status: string;
+  data?: any;
+  message?: string;
+}
+
 const ISSERVER = typeof window === "undefined";
 
-export const getData = (key: string) => {
+export const getData = (key: string): ReturnResult => {
   try {
     if (ISSERVER)
-      return { status: API_STATUS.ERROR, message: API_MESSAGES.SERVER_ERROR };
+      return {
+        status: API_STATUS.ERROR,
+        message: API_MESSAGES.SERVER_ERROR,
+      };
     const data = localStorage.getItem(key);
     const res = data ? JSON.parse(data) : undefined;
     return { status: API_STATUS.SUCCESS, data: res };

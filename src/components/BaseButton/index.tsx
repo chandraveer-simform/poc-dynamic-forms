@@ -1,16 +1,31 @@
-import React from "react";
+import React, { ReactNode } from "react";
 import { Button } from "antd";
 
 interface Props {
+  children?: ReactNode;
   type: "link" | "text" | "default" | "primary" | "dashed";
-  label: string;
   classNames?: string;
+  htmlType?: "button" | "submit" | "reset";
+  onClick?: () => void;
 }
 
-const BaseButton: React.FC<Props> = ({ type, label, classNames, ...rest }) => {
+const BaseButton: React.FC<Props> = ({
+  children,
+  type,
+  classNames,
+  htmlType,
+  onClick = () => {},
+  ...rest
+}) => {
   return (
-    <Button type={type} className={`${classNames}`} {...rest}>
-      {label}
+    <Button
+      type={type}
+      className={`${classNames}`}
+      {...rest}
+      htmlType={htmlType}
+      onClick={onClick}
+    >
+      {children}
     </Button>
   );
 };

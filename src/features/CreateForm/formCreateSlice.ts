@@ -5,7 +5,6 @@ import {
   DynamicFormResult,
   FieldsInterface,
   FormsDataFieldsInterface,
-  getAllForm,
 } from "../../store/actions/dynamicForms";
 import { ACTIONS_TYPE } from "../../store/actionType";
 

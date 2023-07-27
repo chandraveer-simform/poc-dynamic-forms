@@ -40,7 +40,7 @@ export const dynamicFormsSlice = createSlice({
   initialState,
   reducers: {
     getDynamicFormsStart: startLoading,
-    getDynamicFormsSuccess(
+    getDynamicFormsListSuccess(
       state,
       { payload }: PayloadAction<DynamicFormResult>
     ) {
@@ -55,7 +55,7 @@ export const dynamicFormsSlice = createSlice({
 });
 export const {
   getDynamicFormsStart,
-  getDynamicFormsSuccess,
+  getDynamicFormsListSuccess,
   getDynamicFormsFailure,
 } = dynamicFormsSlice.actions;
 
@@ -70,7 +70,20 @@ export const fetchDynamicFromList =
       dispatch(getDynamicFormsStart());
       const result = await getAllForm(ACTIONS_TYPE.DYNAMICS_FORMS_LIST, page);
       console.log("Dynamic", result);
-      dispatch(getDynamicFormsSuccess(result));
+      dispatch(getDynamicFormsListSuccess(result));
+    } catch (err) {
+      dispatch(getDynamicFormsFailure(err.toString()));
+    }
+  };
+
+export const deleteDynamicFrom =
+  (id?: number | string): AppThunk =>
+  async (dispatch) => {
+    try {
+      dispatch(getDynamicFormsStart());
+      const result = await getAllForm(ACTIONS_TYPE.DYNAMICS_FORMS_LIST);
+      console.log("Dynamic", result);
+      dispatch(getDynamicFormsListSuccess(result));
     } catch (err) {
       dispatch(getDynamicFormsFailure(err.toString()));
     }

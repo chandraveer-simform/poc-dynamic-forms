@@ -1,4 +1,4 @@
-export interface fieldsInterface {
+interface fieldsInterface {
   component: any;
   name?: string;
   label?: string;
@@ -6,10 +6,10 @@ export interface fieldsInterface {
   placeholder?: string;
   htmlType?: string;
   type: any;
-  id: string;
+  id?: string;
 }
 
-export interface formsDataFieldsInterface {
+interface formsDataFieldsInterface {
   name: string;
   label: string;
   id: string;

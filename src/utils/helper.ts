@@ -11,3 +11,7 @@ export const makeString = (): string => {
 
   return outString;
 };
+
+export const removeSpaceCharacter = (values: any) => {
+  return values.replaceAll("_", " ");
+};
