@@ -9,7 +9,7 @@ interface ActionRoutesInterface {
   [key: string]: NavBarInterface;
 }
 
-export const SidebarData: NavBarInterface[] = [
+export const SIDEBAR_DATA: NavBarInterface[] = [
   {
     title: "Forms",
     path: "/",
@@ -17,7 +17,7 @@ export const SidebarData: NavBarInterface[] = [
   },
 ];
 
-export const ActionRoutes: ActionRoutesInterface = {
+export const ACTION_ROUTES: ActionRoutesInterface = {
   CREATE_FORM: {
     title: "Create New Form",
     path: "/create-form",

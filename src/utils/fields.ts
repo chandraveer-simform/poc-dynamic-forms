@@ -11,7 +11,16 @@
 // TreeSelect,
 // Upload,
 
-export const AllFields: any = {
+export interface ComponentFilesInterface {
+  name: string;
+  component: string;
+}
+
+export interface AllComponentFilesInterface {
+  [key: string]: ComponentFilesInterface;
+}
+
+export const AllFields: AllComponentFilesInterface = {
   button: {
     name: "button",
     component: "Button",

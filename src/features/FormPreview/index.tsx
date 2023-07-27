@@ -1,25 +1,29 @@
 import React, { useEffect, useState } from "react";
 
-import { useParams, useLocation } from "react-router";
+import { useParams } from "react-router";
 
-import {
-  formData,
-  formsDataFieldsInterface,
-} from "../../page/FormList/formData";
 import Controller from "../../components/Controller";
-import { Button, Form } from "antd";
+import { Form } from "antd";
+import { FormsDataFieldsInterface } from "../../store/actions/dynamicForms";
+import { RootState } from "../../store/store";
+import { useSelector } from "react-redux";
 
 interface Props {}
 
 const FormPreview: React.FC = (props: Props) => {
-  const [formField, setFormField] = useState({} as formsDataFieldsInterface);
+  const { data = [] } = useSelector(
+    (state: RootState) => state.dynamicFormReducer
+  );
+
+  const [formField, setFormField] = useState({} as FormsDataFieldsInterface);
   const params = useParams();
   const [form] = Form.useForm();
 
   const formId = params?.id;
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const getFormFields = ({ formId }: any) => {
-    setFormField(formData.filter((field) => field.id === formId)[0]);
+    setFormField(data.filter((field) => field.id === formId)[0]);
   };
 
   const onFinish = (values: any) => {
@@ -28,7 +32,7 @@ const FormPreview: React.FC = (props: Props) => {
 
   useEffect(() => {
     getFormFields({ formId });
-  }, [formId]);
+  }, [formId, getFormFields]);
   return (
     <div className="page-container">
       <h1>{formField?.label}</h1>

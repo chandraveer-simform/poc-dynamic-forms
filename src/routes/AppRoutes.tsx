@@ -1,17 +1,20 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
 
-import FormList from "../page/FormList";
-import CreateForm from "../containers/Forms/CreateForm";
-import { ActionRoutes } from "./routesData";
-import FormPreview from "../containers/Forms/FormPreview";
+import { ACTION_ROUTES } from "./routesData";
+import Home from "../page/Home";
+import CreateForm from "../features/CreateForm/intex";
+import FormPreview from "../features/FormPreview";
 
 const AppRoutes: React.FC = () => {
   return (
     <Routes>
-      <Route path="/" element={<FormList />} />
-      <Route path={ActionRoutes.CREATE_FORM?.path} element={<CreateForm />} />
-      <Route path={ActionRoutes.PREVIEW_FORM?.path} element={<FormPreview />} />
+      <Route path="/" element={<Home />} />
+      <Route path={ACTION_ROUTES.CREATE_FORM?.path} element={<CreateForm />} />
+      <Route
+        path={ACTION_ROUTES.PREVIEW_FORM?.path}
+        element={<FormPreview />}
+      />
     </Routes>
   );
 };
